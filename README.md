@@ -3,7 +3,6 @@
 ## Visão Geral
 
 Este repositório é responsável por **provisionar o banco de dados PostgreSQL** utilizado pela aplicação principal.
-
 O banco é executado dentro do cluster Kubernetes, de forma isolada e controlada.
 
 ---
