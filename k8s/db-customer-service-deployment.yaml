@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-customer-service-deployment
+  namespace: workshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-customer-service
+  template:
+    metadata:
+      labels:
+        app: db-customer-service
+    spec:
+      containers:
+        - name: postgres-customer-service
+          image: postgres:15
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - secretRef:
+                name: db-customer-service-secret
