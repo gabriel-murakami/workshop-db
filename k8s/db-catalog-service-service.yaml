@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-catalog-service
+  namespace: workshop
+spec:
+  selector:
+    app: db-catalog-service
+  ports:
+    - port: 5432

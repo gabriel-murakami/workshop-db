@@ -26,6 +26,20 @@ resource "kubectl_manifest" "db_customer_service_service" {
   depends_on = [kubectl_manifest.db_customer_service_deployment]
 }
 
+resource "kubectl_manifest" "db_catalog_service_secret" {
+  yaml_body = file("${path.module}/../k8s/db-catalog-service-secret.yaml")
+}
+
+resource "kubectl_manifest" "db_catalog_service_deployment" {
+  yaml_body  = file("${path.module}/../k8s/db-catalog-service-deployment.yaml")
+  depends_on = [kubectl_manifest.db_catalog_service_secret]
+}
+
+resource "kubectl_manifest" "db_catalog_service_service" {
+  yaml_body  = file("${path.module}/../k8s/db-catalog-service-service.yaml")
+  depends_on = [kubectl_manifest.db_catalog_service_deployment]
+}
+
 resource "kubectl_manifest" "mongo_db_deployment" {
   yaml_body  = file("${path.module}/../k8s/mongo-db-deployment.yaml")
 }
